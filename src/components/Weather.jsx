@@ -12,18 +12,23 @@ const Weather = () => {
       alert("Enter City Name");
       return;
     }
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
-      import.meta.env.VITE_APP_ID
-    }`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setWeatherData({
-      icon: data.weather[0].icon,
-      humidity: data.main.humidity,
-      speed: data.wind.speed,
-      city: data.name,
-      temp: Math.floor(data.main.temp),
-    });
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
+        import.meta.env.VITE_APP_ID
+      }`;
+      let response = await fetch(url);
+      let data = await response.json();
+      // console.log(data);
+      setWeatherData({
+        icon: data.weather[0].icon,
+        humidity: data.main.humidity,
+        speed: data.wind.speed,
+        city: data.name,
+        temp: Math.floor(data.main.temp),
+      });
+    } catch (e) {
+      alert("Enter a valid city name");
+    }
   };
   useEffect(() => {
     search("Tirunelveli");
