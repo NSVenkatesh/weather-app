@@ -18,9 +18,10 @@ const Weather = () => {
       }`;
       let response = await fetch(url);
       let data = await response.json();
-      // console.log(data);
+      console.log(data);
       setWeatherData({
         icon: data.weather[0].icon,
+        description: data.weather[0].description,
         humidity: data.main.humidity,
         speed: data.wind.speed,
         city: data.name,
@@ -39,14 +40,16 @@ const Weather = () => {
     inputRef.current.value = "";
   };
   return (
-    <div className="text-white bg-teal-700 py-8 px-6 my-16 mx-4 sm:p-10 sm:m-20 rounded-xl flex flex-col items-center shadow-lg shadow-slate-400">
-      <h1 className="mb-6 text-2xl sm:text-3xl font-semibold">Weather App</h1>
+    <div className="text-white bg-teal-700 py-8 px-6 my-12 mx-4 sm:p-10 sm:m-20 rounded-xl flex flex-col items-center shadow-lg shadow-slate-400">
+      <h1 className="mb-6 text-3xl sm:text-4xl font-semibold">Weather App</h1>
+
       <div className="flex gap-3 flex-wrap justify-center">
         <input
           type="text"
           ref={inputRef}
           placeholder="Enter city name"
-          className="rounded-lg outline-none px-4 py-2 text-l text-black font-semibold"
+          className="rounded-lg outline-none px-3 sm:px-4 py-2 text-black font-semibold"
+          onKeyDown={(e) => e.key === "Enter" && handleClick()}
         />
         <button
           onClick={handleClick}
@@ -55,7 +58,7 @@ const Weather = () => {
           Search
         </button>
       </div>
-      <div className="flex flex-col items-center mt-5 mb-8 font-bold">
+      <div className="flex flex-col gap-1 items-center mt-5 mb-8 font-bold">
         <img
           className="w-28"
           src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
@@ -63,6 +66,7 @@ const Weather = () => {
         />
         <h2 className="text-3xl sm:text-4xl">{weatherData.temp}°C</h2>
         <h3 className="text-2xl sm:text-3xl">{weatherData.city}</h3>
+        <p className="text-lg capitalize">{weatherData.description}</p>
       </div>
       <div className="flex gap-5 flex-col sm:flex-row sm:gap-10 mt-5">
         <div className="flex items-center">
