@@ -60,7 +60,7 @@ const Weather = () => {
       </div>
       <div className="flex flex-col gap-1 items-center mt-5 mb-8 font-bold">
         <img
-          className="w-28"
+          className="w-28 brightness-120 contrast-125"
           src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
           alt="weather condition"
         />
