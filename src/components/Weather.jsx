@@ -35,10 +35,12 @@ const Weather = () => {
   };
   return (
     <div className="text-white bg-teal-700 py-8 px-6 my-16 mx-4 sm:p-10 sm:m-20 rounded-xl flex flex-col items-center shadow-lg shadow-slate-400">
+      <h1 className="mb-6 text-2xl sm:text-3xl font-semibold">Weather App</h1>
       <div className="flex gap-3 flex-wrap justify-center">
         <input
           type="text"
           ref={inputRef}
+          placeholder="Enter city name"
           className="rounded-lg outline-none px-4 py-2 text-l text-black font-semibold"
         />
         <button
